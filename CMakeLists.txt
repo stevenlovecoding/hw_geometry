@@ -16,8 +16,15 @@ else()
   file(GLOB SRCFILES src/*.cpp)
 endif()
 
+set(Eigen3_DIR "./install/share/eigen3/cmake")
+
+find_package(Eigen3 REQUIRED NO_MODULE)
+
 add_library(core ${SRCFILES})
 target_link_libraries(core igl::core igl::opengl igl::glfw)
 
 add_executable(introduction "main.cpp")
 target_link_libraries(introduction core igl::core igl::opengl igl::glfw )
+
+add_executable(test "101.cpp")
+target_link_libraries(test core igl::core igl::opengl igl::glfw )
